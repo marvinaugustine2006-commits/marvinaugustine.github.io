@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Romantic Surprise ❤️</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💘</span>
+        <span>💓</span>
+        <span>💞</span>
+        <span>❤️</span>
+        <span>💝</span>
+        <span>💖</span>
+    </div>
+
+    <header class="navbar">
+
+        <h2>Our Love Story ❤️</h2>
+
+        <a href="index.html">Home 🏠</a>
+
+    </header>
+
+    <main class="dashboard">
+
+        <div class="main-heart">💖</div>
+
+        <p class="welcome">A SPECIAL MESSAGE FOR YOU</p>
+
+        <h1 id="welcomeMessage">
+            Hello, My Beautiful Queen! 👑
+        </h1>
+
+        <p class="intro">
+            I have something important to ask you, my love.
+            You make my world brighter, and I would love
+            to spend a beautiful day making memories with you.
+        </p>
+
+        <section class="invitation">
+
+            <h2>Will You Go on a Date With Me? 🌹</h2>
+
+            <p>
+                Imagine us together, sharing laughter,
+                enjoying delicious food, holding hands,
+                and creating memories we will cherish forever.
+            </p>
+
+            <div class="date-details">
+
+                <div class="detail">
+                    <span>📅</span>
+                    <h3>Date</h3>
+                    <p>Let's choose a day together!</p>
+                </div>
+
+                <div class="detail">
+                    <span>📍</span>
+                    <h3>Location</h3>
+                    <p>A romantic place we both love.</p>
+                </div>
+
+                <div class="detail">
+                    <span>🌹</span>
+                    <h3>Dress Code</h3>
+                    <p>Look beautiful, just as you are!</p>
+                </div>
+
+            </div>
+
+            <h3 class="question">
+                So, my love, what is your answer? ❤️
+            </h3>
+
+            <div class="response-buttons">
+
+                <button class="yes" onclick="acceptDate()">
+                    YES! I'd Love To! 💖
+                </button>
+
+                <button class="maybe" onclick="suggestDate()">
+                    Let's Choose Another Day 💕
+                </button>
+
+                <button class="no" onclick="declineDate()">
+                    Not This Time
+                </button>
+
+            </div>
+
+            <div id="response" class="response" aria-live="polite"></div>
+
+            <div id="datePicker" class="date-picker" hidden>
+
+                <label for="date">Choose your preferred date:</label>
+
+                <input type="date" id="date" required>
+
+                <label for="place">Where would you love to go?</label>
+
+                <input
+                    type="text"
+                    id="place"
+                    placeholder="Suggest a romantic place"
+                >
+
+                <button class="yes" onclick="submitSuggestion()">
+                    Send My Suggestion 💌
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="love-letter">
+
+            <h2>A Little Love Letter 💌</h2>
+
+            <p>
+                My love, I may not have the most expensive gifts
+                in the world, but I want to give you something
+                more meaningful: my time, my attention, my
+                laughter, and beautiful memories together.
+            </p>
+
+            <p>
+                Thank you for being someone so special in my life.
+                Whatever your answer, I appreciate you.
+            </p>
+
+            <h3>With all my love, ❤️</h3>
+
+            <p class="signature">Your Loving Boyfriend 💋</p>
+
+        </section>
+
+        <a href="index.html" class="home-button">
+            ← Back to Home
+        </a>
+
+    </main>
+
+    <footer>
+        Made with love, just for you. ❤️
+    </footer>
+
+    <script>
+        // Display the name entered on the login page.
+        // This is a demo only, not secure authentication.
+
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name");
+
+        if (name && name.trim()) {
+            document.getElementById("welcomeMessage").textContent =
+                "Hello, My Beautiful " + name.trim() + "! ❤️";
+        }
+
+        // Accept the date invitation.
+        function acceptDate() {
+            document.getElementById("response").innerHTML =
+                "<h2>YAAAY! ❤️🥰</h2>" +
+                "<p>You just made me the happiest person! " +
+                "Let's plan our beautiful date together. 💋🌹</p>";
+
+            document.getElementById("datePicker").hidden = false;
+        }
+
+        // Suggest another date.
+        function suggestDate() {
+            document.getElementById("response").innerHTML =
+                "<h2>Of Course, My Love! 💕</h2>" +
+                "<p>Let's choose a day that works for both of us. ❤️</p>";
+
+            document.getElementById("datePicker").hidden = false;
+        }
+
+        // Decline the invitation.
+        function declineDate() {
+            document.getElementById("response").innerHTML =
+                "<h2>That's Okay, My Love ❤️</h2>" +
+                "<p>Thank you for being honest with me. " +
+                "Maybe another time. Your happiness matters to me. 💗</p>";
+
+            document.getElementById("datePicker").hidden = true;
+        }
+
+        // Display the selected date and place.
+        function submitSuggestion() {
+            const date = document.getElementById("date").value;
+            const place = document.getElementById("place").value.trim();
+
+            if (!date) {
+                alert("Please choose your preferred date, my love! ❤️");
+                return;
+            }
+
+            const selectedDate = new Date(date + "T12:00:00");
+
+            const formattedDate = selectedDate.toLocaleDateString(
+                undefined,
+                {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+            document.getElementById("response").innerHTML =
+                "<h2>Our Date Is Taking Shape! 💖</h2>" +
+                "<p>Your preferred date: <strong>" +
+                formattedDate +
+                "</strong></p>" +
+                "<p>Your suggested place: <strong>" +
+                escapeHTML(place || "Let's decide together!") +
+                "</strong></p>" +
+                "<p>I can't wait to plan this with you! ❤️🌹</p>";
+
+            document.getElementById("datePicker").hidden = true;
+        }
+
+        // Keep user-entered place text from being treated as HTML.
+        function escapeHTML(value) {
+            return value.replace(/[&<>"']/g, function (character) {
+                const replacements = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                };
+
+                return replacements[character];
+            });
+        }
+
+        // Set the minimum selectable date to today.
+        const dateInput = document.getElementById("date");
+        const today = new Date();
+        const localToday = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+
+        dateInput.min = localToday;
+    </script>
+
+</body>
+</html>
